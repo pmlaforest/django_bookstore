@@ -1,0 +1,128 @@
+/*
+Generic code
+*/
+
+*
+{
+	margin: 0;
+    padding: 0;
+}
+
+html 
+{
+	font-size: 100%;
+	height: 100%;
+}
+
+body 
+{
+	min-height: 92%;
+	padding-bottom: 3%;   /* Height of the footer */
+	font-size: 62.5%;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	position:relative;
+	line-height: 1.5;
+	background-color: rgb(79,100,137);
+	color: rgb(255,255,255);
+}
+
+h1
+{
+	font-size: 3em;
+	margin-bottom: 0.75em;
+}
+
+p 
+{
+	font-size: 1.2em;
+	margin-bottom: 1.0em;
+}
+
+/*
+Navbar elements
+*/
+
+.navbar-element { 
+	width: 100%;
+	margin-bottom: 4em;
+    padding: 0.5em;
+    background-color: #333333;
+}
+
+.navbar-element ul {
+list-style: none;
+}
+
+.navbar-element ul li {
+    color: rgb(255,255,255);
+    display: inline;
+    margin-left: 5%;
+}
+
+.navbar-element #masthead_name {
+    margin-right: auto;
+	font-size: 2.5em;
+    display: inline;
+}
+
+.navbar-element ul li a {
+    margin-right: 5%;
+    color: rgb(255,255,255);
+	font-size: 1.6em;
+    text-decoration: none; 
+}
+
+.navbar-element ul li a:hover {
+    background-color: #111111;
+}
+
+/*
+Text Section
+*/
+
+.text-section 
+{
+	padding: 0;
+	margin: 0 auto 20px auto;
+	width: 800px;
+    font-size: 1.2em;
+    text-align: center;
+}
+
+
+.text-section h2
+{
+	font-size: 2em;
+	margin-bottom: 0.75em;
+}
+
+
+
+.text-section a
+{
+	text-decoration: none;
+	font-size: 1.2em;
+	margin-bottom: 1.1em;
+	color: rgb(255,255,255);
+}
+
+
+/*
+footer
+*/
+
+.footer
+{
+	position: absolute;
+	margin: 0 20% 0 20%;
+	width: 60%;
+	bottom: 1em;
+	border-top-color: rgb(255,255,255);
+	border-top-style: solid;
+    border-top-width: 0.1em;
+}
+
+.footer ul
+{
+	list-style: none;
+}

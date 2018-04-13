@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static "css/styles.css" %}">
+    <title>This is the title of the base template</title>
+</head>
+
+<body>
+
+{% block navbar %}
+{% include "base_navbar.html" %}    
+{% endblock %}
+
+<div class="text-section">
+    <h1>This is the virtual bookstore website</h1>
+
+    <div class="block-content">
+        <p>This is the content of the page (imported from another .html):</p>
+        {% block content %}
+        {% endblock %}
+    </div>
+</div>
+
+{% block footer %}
+{% include "base_footer.html" %}    
+{% endblock %}
+
+</body>
+
+</html>
