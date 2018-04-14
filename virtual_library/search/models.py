@@ -1,5 +1,6 @@
 from django.db import models
 
+<<<<<<< HEAD
 class Author(models.Model):
     name = models.CharField(max_length=200)
     date_of_birth = models.DateTimeField('date of birth', null=True, blank=True)
@@ -21,3 +22,12 @@ class Book(models.Model):
 class Book_Author(models.Model):
     book = models.ForeignKey(Book, on_delete=models.CASCADE)
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
+=======
+# Create your models here.
+
+class Livre(models.Model):
+    livre_nom = models.CharField(max_length=100)
+    livre_auteur = models.CharField(max_length=100)
+    livre_annee = models.CharField(max_length=4)
+    livre_pages = models.IntegerField()
+>>>>>>> 61dbf927ac49042a8d994b18309a6451cf43ea39
