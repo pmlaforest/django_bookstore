@@ -2,7 +2,6 @@
 
 {% block content %}
 
-<<<<<<< HEAD
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
 
@@ -30,17 +29,5 @@
 <p> 0 book found. </p>
 
 {% endif %}
-=======
-{{ object.description_html|safe }}
-
-{% if error_message %}
-    <p><strong>{{ error_message }}</strong></p>
-{% endif %}
-
-<p>You searched for "{{ keywords }}"; the results are listed below.</p>
-{% for livre in query_results %}
-    <p>{{livre.livre_nom}}</p></b>
-{% endfor %}
->>>>>>> 61dbf927ac49042a8d994b18309a6451cf43ea39
 
 {% endblock %}
