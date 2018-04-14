@@ -7,9 +7,8 @@ from . import views
 app_name = 'search'
 urlpatterns = [
     path('search/', views.search, name='search'),
-    path('', views.index, name='index'),
-    path('index',  views.index, name='index'),
-    path('index/', views.index, name='index'),
     path('search', RedirectView.as_view(url='search/')),
+    path('', views.index, name='index'),
+    path('index/',  views.index, name='index'),
     re_path(r'', views.error, name='error'),
 ]

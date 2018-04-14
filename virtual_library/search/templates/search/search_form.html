@@ -6,7 +6,7 @@
 
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
-<h2>Name of book, author, or year of publisment</h2>
+<h2>Search by name of book or Author</h2>
 
 <form action="{% url 'search:search' %}" method="post">
     {% csrf_token %}
