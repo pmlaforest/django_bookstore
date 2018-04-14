@@ -4,7 +4,9 @@
 
 {{ object.description_html|safe }}
 
-{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+{% if error_message %}
+    <p><strong>{{ error_message }}</strong></p>
+{% endif %}
 
 <h2>Name of book, author, or year of publisment</h2>
 
