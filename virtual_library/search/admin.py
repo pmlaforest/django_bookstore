@@ -1,5 +1,4 @@
 from django.contrib import admin
-from .models import Livre
 
 from .models import Book, Author, Book_Author
 
