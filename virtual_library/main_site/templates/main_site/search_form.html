@@ -10,7 +10,7 @@
 
 <h2>Search by name of book or Author</h2>
 
-<form action="{% url 'search:search' %}" method="post">
+<form action="{% url 'main_site:search' %}" method="post">
     {% csrf_token %}
     <label for="string_to_look_for">search</label>
     <input name="research" id="string_to_look_for" type="text">

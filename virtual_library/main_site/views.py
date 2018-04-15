@@ -3,11 +3,11 @@ from django.template import loader, Context
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
 
-from search.models import Book, Author, Book_Author
+from main_site.models import Book, Author, Book_Author
 
 def index(request):
     context = {}
-    return render(request, 'search/search_form.html', context)
+    return render(request, 'main_site/search_form.html', context)
 
 def search(request):
     try:
@@ -31,7 +31,13 @@ def search(request):
         if books_found_when_keyword_is_a_book:
             for b2 in books_found_when_keyword_is_a_book:
                 books.append(b2.title)
-        
+
+        #The keyword is a genre
+        books_found_when_keyword_is_a_genre = Book.objects.filter(genres__name=keyword)
+        if books_found_when_keyword_is_a_genre:
+            for b3 in books_found_when_keyword_is_a_genre:
+                books.append(b3.title)
+
         #Getting the authors of the books
         if books:
             for b in books:
@@ -48,7 +54,7 @@ def search(request):
                     'books_and_authors': books_and_authors,
                   }
 
-    template = loader.get_template('search/search_result.html')
+    template = loader.get_template('main_site/search_result.html')
     response = template.render(context)    
     # IMPORTANT : need to use HttpResponseRedirect instead !!!
     return HttpResponse(response)

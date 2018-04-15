@@ -4,7 +4,7 @@ from django.views.generic import RedirectView
 
 from . import views
 
-app_name = 'search'
+app_name = 'main_site'
 urlpatterns = [
     path('search/', views.search, name='search'),
     path('search', RedirectView.as_view(url='search/')),
