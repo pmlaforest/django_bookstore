@@ -4,14 +4,14 @@
 
 <head>
     {% load static %}
-    <link rel="stylesheet" href="{% static "css/styles.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}"/>
     <title>This is the title of the base template</title>
 </head>
 
 <body>
 
 {% block navbar %}
-{% include "base_navbar.html" %}    
+{% include "base_navbar.html" %}
 {% endblock %}
 
 <div class="text-section">
@@ -25,7 +25,7 @@
 </div>
 
 {% block footer %}
-{% include "base_footer.html" %}    
+{% include "base_footer.html" %}
 {% endblock %}
 
 </body>
