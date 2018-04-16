@@ -1,6 +1,7 @@
 bin/
 include/
 lib/
+virtual_library/db.sqlite3
 lib64
 pip-selfcheck.json
 pyvenv.cfg

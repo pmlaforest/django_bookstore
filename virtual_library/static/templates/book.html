@@ -1,0 +1,16 @@
+
+{% block book %}
+
+<div class='book'>
+    {% if book_desc %}
+    {% if book_desc.title %} <p> title: {{ book_desc.title }} </p> {% endif %}
+    {% if book_desc.pub_date %} <p> publishing date: {{ book_desc.pub_date }} </p> {% endif %}
+    {% if book_desc.synopsis %} <p> synopsis: {{ book_desc.synopsis }} </p> {% endif %}
+    {% endif %}
+    
+    {% if authors %} <p> authors: {% for a in authors %} {{ a.name }} {% endfor %}</p> {% endif %}
+    
+    {% if genres %} <p> genres: {% for g in genres %} {{ g.name }} {% endfor %}</p> {% endif %}
+</div>
+
+{% endblock %}

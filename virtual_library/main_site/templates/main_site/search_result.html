@@ -17,8 +17,8 @@
 
 {% for i in books_and_authors %}
 <tr>
-    <td>{{ i.0 }}</td>
-    <td>{% for j in i.1 %} {{ j }} {% endfor %}</td>
+    <td><a href = "{% url 'main_site:get_info' i.0  %}">{{ i.1 }}</a></td>
+    <td>{% for j in i.2 %} {{ j }} {% endfor %}</td>
 </tr>
 {% endfor %}
 
