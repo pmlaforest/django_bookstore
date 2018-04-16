@@ -21,19 +21,19 @@ def search(request):
         books_and_authors = [] 
 
         #The keyword is an author
-        books_found_when_keyword_is_an_author = Book.objects.filter(authors__name=keyword)
+        books_found_when_keyword_is_an_author = Book.objects.filter(authors__name__icontains=keyword)
         if books_found_when_keyword_is_an_author:
             for b1 in books_found_when_keyword_is_an_author:
                 books.append(b1.title)
 
         #The keyword is a book
-        books_found_when_keyword_is_a_book = Book.objects.filter(title=keyword)
+        books_found_when_keyword_is_a_book = Book.objects.filter(title__icontains=keyword)
         if books_found_when_keyword_is_a_book:
             for b2 in books_found_when_keyword_is_a_book:
                 books.append(b2.title)
 
         #The keyword is a genre
-        books_found_when_keyword_is_a_genre = Book.objects.filter(genres__name=keyword)
+        books_found_when_keyword_is_a_genre = Book.objects.filter(genres__name__icontains=keyword)
         if books_found_when_keyword_is_a_genre:
             for b3 in books_found_when_keyword_is_a_genre:
                 books.append(b3.title)

@@ -6,3 +6,4 @@ pip-selfcheck.json
 pyvenv.cfg
 
 *.pyc
+*.cpython-36.pyc
