@@ -41,8 +41,14 @@ p
 /*
 Navbar elements
 */
+.navbar-right {
+	float: right;
+	margin: 0px 50px;
+	font-size: 1.5em;
+	white-space: nowrap;
+}
 
-.navbar-element { 
+.navbar-element {
 	width: 100%;
 	margin-bottom: 4em;
     padding: 0.5em;
