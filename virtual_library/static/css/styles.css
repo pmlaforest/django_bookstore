@@ -42,7 +42,7 @@ p
 Navbar elements
 */
 
-.navbar-element {
+.navbar-element { 
 	width: 100%;
 	margin-bottom: 4em;
     padding: 0.5em;
@@ -76,13 +76,6 @@ list-style: none;
     background-color: #111111;
 }
 
-#navbar-right {
-	float: right;
-	width: 100px;
-	height: auto;
-	font-size: 1.5em;
-	margin : 0px 30px ;
-}
 /*
 Text Section
 */
