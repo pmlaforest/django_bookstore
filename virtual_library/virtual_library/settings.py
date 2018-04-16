@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'search'
+    'main_site'
 ]
 
 MIDDLEWARE = [
@@ -57,7 +57,7 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
             os.path.join(BASE_DIR, "static/templates"),
-            os.path.join(BASE_DIR, "search/templates"),
+            os.path.join(BASE_DIR, "main_site/templates"),
             os.path.join(BASE_DIR, "virtual_library/templates"),
         ],
         'APP_DIRS': True,

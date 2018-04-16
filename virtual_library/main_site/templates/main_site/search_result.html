@@ -18,7 +18,7 @@
 {% for i in books_and_authors %}
 <tr>
     <td>{{ i.0 }}</td>
-    <td>{{ i.1 }}</td>
+    <td>{% for j in i.1 %} {{ j }} {% endfor %}</td>
 </tr>
 {% endfor %}
 
