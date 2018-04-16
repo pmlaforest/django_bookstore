@@ -2,20 +2,20 @@
 
 {% block content %}
 
-{{ object.description_html|safe }}
+    {{ object.description_html|safe }}
 
-{% if error_message %}
-    <p><strong>{{ error_message }}</strong></p>
-{% endif %}
+    {% if error_message %}
+        <p><strong>{{ error_message }}</strong></p>
+    {% endif %}
 
-<h2>Search by name of book or author</h2>
+    <h2>Search by name of book or author</h2>
 
-<form action="{% url 'main_site:search' %}" method="post">
-    {% csrf_token %}
-    <label for="string_to_look_for">search</label>
-    <input name="research" id="string_to_look_for" type="text">
-    <input type="submit" value="Go">
-</form>
+    <form action="{% url 'main_site:search' %}" method="post">
+        {% csrf_token %}
+        <label for="string_to_look_for">search</label>
+        <input name="research" id="string_to_look_for" type="text">
+        <input type="submit" value="Go">
+    </form>
 
 {% endblock %}
 

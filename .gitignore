@@ -2,9 +2,12 @@ bin/
 include/
 lib/
 virtual_library/db.sqlite3
+virtual_library/__pycache__/
+main_site/__pycache__/
 lib64
 pip-selfcheck.json
 pyvenv.cfg
 
 *.pyc
 *.cpython-36.pyc
+
