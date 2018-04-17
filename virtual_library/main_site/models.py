@@ -9,7 +9,21 @@ class Author(models.Model):
         return self.name
 
 class Genre(models.Model):
-    name = models.CharField(max_length=200)
+    NAMES = (
+        ('SF', 'Science fiction'),
+        ('S', 'Satire'),
+        ('AA', 'Action and Adventure'),
+        ('R', 'Romance'),
+        ('M', 'Mystery'),
+        ('H', 'Horror'),
+        ('SH', 'Self help'),
+        ('H', 'Health'),
+        ('G', 'Guide'),
+        ('HI', 'History'),
+        ('SC', 'Science'),
+        ('CO', 'Cookbooks'),
+    )
+    name = models.CharField(max_length=2, choices=NAMES)
 
     def __str__(self):
         return self.name
@@ -18,6 +32,7 @@ class Book(models.Model):
     title = models.CharField(max_length=200)
     pub_date = models.DateTimeField('date published', null=True,  blank=True)
     synopsis = models.TextField(max_length=2500,blank=True)
+    path_to_img = models.CharField(max_length=260)
 
     authors = models.ManyToManyField(Author, through="Book_Author")
     genres  = models.ManyToManyField(Genre, through="Book_Genre")

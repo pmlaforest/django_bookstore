@@ -68,17 +68,22 @@ list-style: none;
 .navbar-element #masthead_name {
     margin-right: auto;
 	font-size: 2.5em;
-    display: inline;
+	display: inline;
 }
 
-.navbar-element ul li a {
+.navbar-element li#masthead_name a {
+	text-decoration: none;
+	color: rgb(255,255,255);
+}
+
+.navbar-element ul li.navbar-right  a {
     margin-right: 5%;
     color: rgb(255,255,255);
 	font-size: 1.6em;
     text-decoration: none;
 }
 
-.navbar-element ul li a:hover {
+.navbar-element ul li.navbar-right a:hover {
     background-color: #111111;
 }
 
@@ -145,10 +150,6 @@ Array
 }
 
 #search-results  tr:hover {background-color: #ddd;}
-
-/*
-#search-results tr:nth-child(even){background-color: #f2f2f2;}
-*/
 
 #search-results  td, #search-results  th 
 {
