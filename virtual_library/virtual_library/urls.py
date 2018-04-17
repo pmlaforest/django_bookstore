@@ -26,7 +26,3 @@ urlpatterns = [
 urlpatterns += [
     path('accounts/', include('django.contrib.auth.urls')),
 ]
-
-urlpatterns = [
-path('accounts/ login/ [name= "login"'])
-]
