@@ -7,7 +7,14 @@ from django.contrib import messages
 from main_site.models import Book, Author, Book_Author, Genre
 
 def index(request):
-    context = {}
+    num_authors = Author.objects.count()  # The 'all()' is implied by default.
+
+    # Number of visits to this view, as counted in the session variable.
+    num_visits=request.session.get('num_visits', 0)
+    request.session['num_visits'] = num_visits+1
+
+    # Render the HTML template index.html with the data in the context variable.
+    context= {'num_visits':num_visits}
     return render(request, 'main_site/search_form.html', context)
 
 def search(request, keyword:str=None):
@@ -19,13 +26,13 @@ def search(request, keyword:str=None):
             search(keyword)
         except (KeyError):
             context = { 'error_message': "Error in the search" }
-            return render(request, 'main_site/search_result.html', context)     
+            return render(request, 'main_site/search_result.html', context)
     else:
         keyword = keyword.replace("%20", " ")
         books_and_authors = []
         books = []
         authors = []
-        
+
         #The keyword is a name of an author
         books_by_author = Book.objects.filter(authors__name__icontains=keyword)
         if books_by_author:
@@ -50,22 +57,22 @@ def search(request, keyword:str=None):
                 authors = []
                 authors_of_book_queryset = Author.objects.filter(book__title=b[1])
                 if authors_of_book_queryset:
-                    for a1 in authors_of_book_queryset:                     
+                    for a1 in authors_of_book_queryset:
                         authors.append(a1.name)
                     books_and_authors.append((b[0], b[1], authors))
 
-        context = { 
+        context = {
             'books_and_authors': books_and_authors,
             'keyword': keyword
             }
 
         template = loader.get_template('main_site/search_result.html')
-        response = template.render(context)    
+        response = template.render(context)
         # IMPORTANT : need to use HttpResponseRedirect instead !!!
         return HttpResponse(response)
 
 def get_info(request, book_id):
-    
+
     authors_of_book = []
     genres_of_book = []
 

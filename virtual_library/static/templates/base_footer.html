@@ -1,7 +1,8 @@
 {% block navbar %}
 <div class="footer">
-    <ul>	
-        <li>&#9400;2018 Pierre-Marc Laforest, Alexandre Cox, Nicolas Savard, Marc-André Émond</li>	
+    <ul>
+        <li>&#9400;2018 Pierre-Marc Laforest, Alexandre Cox, Nicolas Savard, Marc-André Émond</li>
+        <li>You have visited this page {{ num_visits }}{% if num_visits == 1 %} time{% else %} times{% endif %}.</li>
     </ul>
 </div>
 {% endblock %}
