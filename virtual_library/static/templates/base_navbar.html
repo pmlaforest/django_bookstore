@@ -2,8 +2,8 @@
 <div class="navbar-element">
     <ul>
         <li id="masthead_name"><a href="{% url 'main_site:index' %}">Virtual BookStore</a></li>
-        <li class="navbar-right"><a href="">Sign up</a></li>
-        <li class="navbar-right"><a href="">Sign in</a></li>
+        <li class="navbar-right"><a href="{% url 'main_site:signup' %}">Sign up</a></li>
+        <li class="navbar-right"><a href="{% url 'main_site:signin' %}">Sign in</a></li>
     </ul>
 </div>
 {% endblock %}
