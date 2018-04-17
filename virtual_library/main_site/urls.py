@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.urls import path,re_path,include
 from django.views.generic import RedirectView
+from django.contrib.auth.vies import login
 
 from . import views
 
