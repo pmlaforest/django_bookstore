@@ -6,13 +6,12 @@
 
 
 {% if nb_books > 0 %}
-
 <p>{{ nb_books }} book found. </p>
 
-<table>
+<table id="search-results">
 <tr>
-    <td>Title</td>
-    <td>Author</td>
+    <th>Title</th>
+    <th>Author</th>
 </tr>
 
 {% for i in books_and_authors %}

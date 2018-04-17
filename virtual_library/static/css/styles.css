@@ -43,8 +43,8 @@ Navbar elements
 */
 .navbar-right {
 	float: right;
-	margin: 0px 50px;
-	font-size: 1.5em;
+	margin: 5px 35px;
+	font-size: 1.1em;
 	white-space: nowrap;
 }
 
@@ -131,4 +131,37 @@ footer
 .footer ul
 {
 	list-style: none;
+}
+
+/*
+Array
+*/
+
+#search-results 
+{
+	margin: auto;
+    border-collapse: collapse;
+    width: 75%;
+}
+
+#search-results  tr:hover {background-color: #ddd;}
+
+/*
+#search-results tr:nth-child(even){background-color: #f2f2f2;}
+*/
+
+#search-results  td, #search-results  th 
+{
+	border: 1px solid #ddd;
+	text-align: left;
+    padding: 8px;
+}
+
+#search-results th 
+{
+    padding-top: 12px;
+	padding-bottom: 12px;
+	font-size:1.2em;
+    background-color: #333333;
+    color: white;
 }
