@@ -84,5 +84,13 @@ def get_info(request, book_id):
     }
     return render(request, 'main_site/book_info.html', context)
 
+def signin(request):
+    context = {}
+    return render(request, 'main_site/signin_form.html', context)
+
+def signup(request):
+    context = {}
+    return render(request, 'main_site/signup_form.html', context)
+
 def error(request):
     return render(request, '404.html', {})

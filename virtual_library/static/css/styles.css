@@ -166,3 +166,24 @@ Array
     background-color: #333333;
     color: white;
 }
+
+/*
+form
+*/
+
+#sign-in input, #sign-up input {
+	display: block;
+	margin:auto;
+	width: 40%;
+}
+
+#sign-in label, #sign-up label {
+	display: block;
+	margin:auto;
+	width: 40%;
+}
+
+#sign-in button, #sign-up button
+{
+	margin-top: 10px;
+}
