@@ -2,6 +2,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader, Context
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
+from django.contrib import messages
 
 from main_site.models import Book, Author, Book_Author, Genre
 
@@ -9,33 +10,38 @@ def index(request):
     context = {}
     return render(request, 'main_site/search_form.html', context)
 
-def search(request):
-    try:
-        keyword=request.POST['research']
+def search(request, keyword:str=None):
 
-    except (KeyError):
-        context = { 'keyword': ""}
+    if keyword == None:
+        try:
+            keyword=request.POST['research']
+            return HttpResponseRedirect(str(keyword)+"/")
+            search(keyword)
+        except (KeyError):
+            context = { 'error_message': "Error in the search" }
+            return render(request, 'main_site/search_result.html', context)     
     else:
+        keyword = keyword.replace("%20", " ")
+        books_and_authors = []
         books = []
         authors = []
-        books_and_authors = [] 
-
-        #The keyword is an author
-        books_found_when_keyword_is_an_author = Book.objects.filter(authors__name__icontains=keyword)
-        if books_found_when_keyword_is_an_author:
-            for b1 in books_found_when_keyword_is_an_author:
+        
+        #The keyword is a name of an author
+        books_by_author = Book.objects.filter(authors__name__icontains=keyword)
+        if books_by_author:
+            for b1 in books_by_author:
                 books.append((b1.id, b1.title))
 
-        #The keyword is a book
-        books_found_when_keyword_is_a_book = Book.objects.filter(title__icontains=keyword)
-        if books_found_when_keyword_is_a_book:
-            for b2 in books_found_when_keyword_is_a_book:
+        #The keyword is a title of a book
+        books_by_title = Book.objects.filter(title__icontains=keyword)
+        if books_by_title:
+            for b2 in books_by_title:
                 books.append((b2.id, b2.title))
 
         #The keyword is a genre
-        books_found_when_keyword_is_a_genre = Book.objects.filter(genres__name__icontains=keyword)
-        if books_found_when_keyword_is_a_genre:
-            for b3 in books_found_when_keyword_is_a_genre:
+        books_by_genre = Book.objects.filter(genres__name__icontains=keyword)
+        if books_by_genre:
+            for b3 in books_by_genre:
                 books.append((b3.id, b3.title))
 
         #Getting the authors of the books
@@ -48,16 +54,15 @@ def search(request):
                         authors.append(a1.name)
                     books_and_authors.append((b[0], b[1], authors))
 
-        nb_books = len(books)
+        context = { 
+            'books_and_authors': books_and_authors,
+            'keyword': keyword
+            }
 
-        context = { 'nb_books': nb_books,
-                    'books_and_authors': books_and_authors,
-                  }
-
-    template = loader.get_template('main_site/search_result.html')
-    response = template.render(context)    
-    # IMPORTANT : need to use HttpResponseRedirect instead !!!
-    return HttpResponse(response)
+        template = loader.get_template('main_site/search_result.html')
+        response = template.render(context)    
+        # IMPORTANT : need to use HttpResponseRedirect instead !!!
+        return HttpResponse(response)
 
 def get_info(request, book_id):
     

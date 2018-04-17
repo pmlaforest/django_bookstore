@@ -2,31 +2,34 @@
 
 {% block content %}
 
-{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
 
-{% if nb_books > 0 %}
-<p>{{ nb_books }} book found. </p>
+    {% if not books_and_authors %}
 
-<table id="search-results">
-<tr>
-    <th>Title</th>
-    <th>Author</th>
-</tr>
+        <p> 0 book found using "{{ keyword }}". </p>
 
-{% for i in books_and_authors %}
-<tr>
-    <td><a href = "{% url 'main_site:get_info' i.0  %}">{{ i.1 }}</a></td>
-    <td>{% for j in i.2 %} {{ j }} {% endfor %}</td>
-</tr>
-{% endfor %}
+    {% else %}
 
-</table>
+        <p>{{ books_and_authors|length }} book found using "{{ keyword }}". </p>
 
-{% else %}
+        <table id="search-results">
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+        </tr>
 
-<p> 0 book found. </p>
+        {% for i in books_and_authors %}
+        <tr>
+            <td><a href = "{% url 'main_site:get_info' i.0  %}">{{ i.1 }}</a></td>
+            <td>{% for j in i.2 %} {{ j }} {% endfor %}</td>
+        </tr>
+        {% endfor %}
 
-{% endif %}
+        </table>
+
+    {% endif %}
+
+        <a href="{% url 'main_site:index' %}">New search</a>
 
 {% endblock %}
