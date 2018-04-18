@@ -3,6 +3,8 @@ from django.urls import path,re_path,include
 from django.views.generic import RedirectView
 from django.contrib.auth.views import login
 
+
+
 from . import views
 
 app_name = 'main_site'
@@ -14,5 +16,5 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('index/',  RedirectView.as_view(url='')),
     path('book/<int:book_id>/', views.get_info, name='get_info'),
-    re_path(r'', views.error, name='error'),
+    # re_path(r'', views.error, name='error'),
 ]

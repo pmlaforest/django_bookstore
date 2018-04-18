@@ -4,10 +4,11 @@ from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
 from django.contrib import messages
 
+
+
 from main_site.models import Book, Author, Book_Author, Genre
 
 def index(request):
-    num_authors = Author.objects.count()  # The 'all()' is implied by default.
 
     # Number of visits to this view, as counted in the session variable.
     num_visits=request.session.get('num_visits', 0)
@@ -98,6 +99,10 @@ def signin(request):
 def signup(request):
     context = {}
     return render(request, 'main_site/signup_form.html', context)
+
+# def signin(request):
+#     context = {}
+#     return render(request, 'registration/login.html', context)
 
 def error(request):
     return render(request, '404.html', {})
