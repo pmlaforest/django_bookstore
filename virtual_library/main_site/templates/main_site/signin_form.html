@@ -4,13 +4,8 @@
 
     <form id="sign-in" action="" method="post">
         {% csrf_token %}
-        <label for="username">username</label>
-        <input name="username" id="username" type="text">
-        
-        <label for="password">password</label>
-        <input name="password" id="password" type="text">
-        
-        <button type="button">Sign in</button>
+        {{ form.as_p }}
+        <button type="submit">Sign in</button>
     </form>
 
 {% endblock %}
