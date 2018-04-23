@@ -1,9 +1,11 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader, Context
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
 from django.contrib import messages
+from django.contrib.auth import login, authenticate
 
+from .forms import SignUpForm
 
 
 from main_site.models import Book, Author, Book_Author, Genre
@@ -24,7 +26,7 @@ def search(request, keyword:str=None):
         try:
             keyword=request.POST['research']
             return HttpResponseRedirect(str(keyword)+"/")
-            search(keyword)
+            #search(keyword)
         except (KeyError):
             context = { 'error_message': "Error in the search" }
             return render(request, 'main_site/search_result.html', context)
@@ -92,17 +94,34 @@ def get_info(request, book_id):
     }
     return render(request, 'main_site/book_info.html', context)
 
-def signin(request):
-    context = {}
-    return render(request, 'main_site/signin_form.html', context)
-
-def signup(request):
-    context = {}
-    return render(request, 'main_site/signup_form.html', context)
-
 # def signin(request):
 #     context = {}
-#     return render(request, 'registration/login.html', context)
+#     return render(request, 'main_site/signin_form.html', context)
+
+# def signup(request):
+#     context = {}
+#     return render(request, 'main_site/signup_form.html', context)
+
+def auth(self):
+    return HttpResponse("The auth/ automatic redirection is set in \
+                        settings.py as LOGIN_REDIRECT_URL. This current message \
+                        is coming from main_site.views.auth() \
+                        Succesfull login")
+
+def signup(request):
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            login(request, user)
+            return redirect(reverse('main_site:index'))
+    else:
+        form = SignUpForm()
+    return render(request, 'main_site/signup_form.html', {'form': form})
+
 
 def error(request):
     return render(request, '404.html', {})

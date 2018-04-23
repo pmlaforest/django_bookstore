@@ -7,31 +7,19 @@
 <form id="sign-up" action="" method="post">
     {% csrf_token %}
 
-    <label for="inputLastName">Last name</label>
-        <input type="text" id="inputLastName" name = "lastname" placeholder="Last name" required>
-                
-    <label for="inputFirstName">First Name</label>
-        <input type="text" id="inputFirstName" name = "firstname" placeholder="First name" required>
-        
-    <label for="inputUsername">username</label>
-        <input type="text" id="inputUsername" name = "username" placeholder="username" required>
-        
-    <label for="inputEmail">email</label>
-        <input type="email" id="inputEmail" name = "email" placeholder="email" required>
-        
-    <label for="inputPassword">password</label>
-        <input type="password" id="inputPassword" name = "password" placeholder="password" required>
-        
-    <label for="inputAddress">address</label>
-        <input type="text" id="inputAddress" name = "address" placeholder="address" required>
-        
-    <label for="inputCity">city</label>
-        <input type="text" id="inputCity" name = "city" placeholder="city" required>
-        
-    <label for="inputCountry">country</label>
-        <input type="text" id="inputCountry" name = "country" placeholder="country" required>
-   
-    <button type="button">Sign up</button>
+    {% for field in form %}
+      <p>
+        {{ field.label_tag }}<br>
+        {{ field }}
+        <!-- {% if field.help_text %}
+          <small style="color: grey">{{ field.help_text }}</small>
+        {% endif %} -->
+        {% for error in field.errors %}
+          <p style="color: red">{{ error }}</p>
+        {% endfor %}
+      </p>
+    {% endfor %}
+    <button type="submit">Sign up</button>
 
 </form>
 
