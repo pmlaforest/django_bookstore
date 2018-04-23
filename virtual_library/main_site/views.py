@@ -12,13 +12,20 @@ from main_site.models import Book, Author, Book_Author, Genre
 
 def index(request):
 
+    books_to_propose = []
+
     # Number of visits to this view, as counted in the session variable.
     num_visits=request.session.get('num_visits', 0)
     request.session['num_visits'] = num_visits+1
 
+    books = Book.objects.all()
+    books_to_propose = list(books)
+ 
     # Render the HTML template index.html with the data in the context variable.
-    context= {'num_visits':num_visits}
-    return render(request, 'main_site/search_form.html', context)
+    context= {'num_visits':num_visits,
+              'books_to_propose': books_to_propose
+             }
+    return render(request, 'main_site/index.html', context)
 
 def search(request, keyword:str=None):
 

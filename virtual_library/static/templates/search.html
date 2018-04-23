@@ -1,0 +1,11 @@
+{% block search %}
+
+<div id="search-form">
+    <form action="{% url 'main_site:search' %}" method="post">
+        {% csrf_token %}
+        <input name="research" id="string_to_look_for" type="text">
+        <input type="submit" value="Go">
+    </form>
+</div>
+
+{% endblock %}

@@ -48,6 +48,10 @@ Navbar elements
 	white-space: nowrap;
 }
 
+.search-form {
+	margin: auto;
+}
+
 .navbar-element {
 	width: 100%;
 	margin-bottom: 4em;
@@ -61,14 +65,13 @@ list-style: none;
 
 .navbar-element ul li {
     color: rgb(255,255,255);
-    display: inline;
+    display: inline-block;
     margin-left: 5%;
 }
 
 .navbar-element #masthead_name {
     margin-right: auto;
 	font-size: 2.5em;
-	display: inline;
 }
 
 .navbar-element li#masthead_name a {

@@ -1,13 +1,19 @@
 {% block navbar %}
+
 <div class="navbar-element">
     <ul>
         <li id="masthead_name"><a href="{% url 'main_site:index' %}">Virtual BookStore</a></li>
+        
+        <li id="navbar-search">{% include "search.html" %}</li>
+
         {% if not user.is_authenticated %}
         <li class="navbar-right"><a href="{% url 'main_site:signup' %}">Sign up</a></li>
         <li class="navbar-right"><a href="{% url 'main_site:signin' %}">Sign in</a></li>
+        
         {% else %}
         <li class="navbar-right"><a href="{% url 'main_site:logout' %}">Sign out</a></li>
         <li class="navbar-right"><a href="{% url 'main_site:index' %}">Cart</a></li>
+
         {% endif %}
     </ul>
 </div>

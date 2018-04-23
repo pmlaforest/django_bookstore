@@ -34,6 +34,9 @@ class Book(models.Model):
     synopsis = models.TextField(max_length=2500,blank=True)
     path_to_img = models.CharField(max_length=260)
 
+    # need to add the price of the book here !
+    # price = models.FloatField()
+
     authors = models.ManyToManyField(Author, through="Book_Author")
     genres  = models.ManyToManyField(Genre, through="Book_Genre")
 

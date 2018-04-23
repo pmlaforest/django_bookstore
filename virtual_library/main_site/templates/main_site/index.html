@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block newlinks %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static "css/index.css" %}">
+{% endblock %}
+
+{% block content %}
+
+    {% if error_message %}
+        <p><strong>{{ error_message }}</strong></p>
+    {% endif %}
+
+    <table id="discount-books">
+   
+    {% for book in books_to_propose %}
+    <tr> 
+        <td>{% include "book.html" with book_desc=book %}</td> 
+        <td> <button type="button">Buy this book</button> </td>
+    </tr>
+   
+    {% endfor %}
+
+    </table>
+
+{% endblock %}
+
