@@ -1,8 +1,10 @@
 bin/
 include/
 lib/
+virtual_library/.vscode/
 virtual_library/db.sqlite3
 virtual_library/__pycache__/
+virtual_library/virtual_library/__pycache__/
 main_site/__pycache__/
 lib64
 pip-selfcheck.json

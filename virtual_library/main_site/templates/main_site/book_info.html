@@ -2,8 +2,8 @@
 
 {% block content %}
 
-<h2> This is the detailed info about the book  </h2>
-
 {% include "book.html" with book_desc=book_to_display authors=authors_of_book genres=genres_of_book %}    
+
+<a href="{% url 'main_site:index' %}">New search</a>
 
 {% endblock %}
