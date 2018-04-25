@@ -120,6 +120,9 @@ Text Section
 	color: rgb(255,255,255);
 }
 
+#books-img{
+	border-radius: 10%;
+}
 .btn {
   background: #3498db;
   background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
