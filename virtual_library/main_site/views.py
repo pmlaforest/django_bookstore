@@ -5,8 +5,6 @@ from django.urls import reverse
 from django.contrib import messages
 from django.contrib.auth import login, authenticate
 
-from .forms import SignUpForm
-
 
 from main_site.models import Book, Author, Book_Author, Genre
 
@@ -20,7 +18,7 @@ def index(request):
 
     books = Book.objects.all()
     books_to_propose = list(books)
- 
+
     # Render the HTML template index.html with the data in the context variable.
     context= {'num_visits':num_visits,
               'books_to_propose': books_to_propose

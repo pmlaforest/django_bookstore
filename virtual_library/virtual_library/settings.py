@@ -67,6 +67,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'main_site.context_processors.settings',
+
             ],
         },
     },
@@ -89,7 +91,7 @@ DATABASES = {
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
 
-LOGIN_REDIRECT_URL = 'auth/'
+LOGIN_REDIRECT_URL = '/'
 
 AUTH_PASSWORD_VALIDATORS = [
     {
