@@ -12,16 +12,15 @@
     {% endif %}
 
     <table id="discount-books">
-   
+
     {% for book in books_to_propose %}
-    <tr> 
-        <td>{% include "book.html" with book_desc=book %}</td> 
-        <td> <button type="button">Buy this book</button> </td>
+    <tr>
+        <td>{% include "book.html" with book_desc=book %}</td>
+        <td> <button class="btn" type="button"><i class="fas fa-cart-plus"></i></button> </td>
     </tr>
-   
+
     {% endfor %}
 
     </table>
 
 {% endblock %}
-
