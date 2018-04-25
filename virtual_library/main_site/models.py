@@ -36,7 +36,8 @@ class Book(models.Model):
 
 
     # need to add the price of the book here !
-    #price = models.FloatField()
+    buy_price = models.FloatField(blank=True, null=True)
+    rent_price = models.FloatField(blank=True, null=True)
 
     authors = models.ManyToManyField(Author, through="Book_Author")
     genres  = models.ManyToManyField(Genre, through="Book_Genre")
