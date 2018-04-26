@@ -9,6 +9,7 @@ from .forms import SignUpForm
 
 
 from main_site.models import Book, Author, Book_Author, Genre
+from online_shop.models import Session_Cart
 
 def index(request):
 
@@ -32,7 +33,7 @@ def search(request, keyword:str=None):
     if keyword == None:
         try:
             keyword=request.POST['research']
-            return HttpResponseRedirect(str(keyword)+"/")
+            return redirect("main_site:search", keyword)
             #search(keyword)
         except (KeyError):
             context = { 'error_message': "Error in the search" }
@@ -109,10 +110,21 @@ def get_info(request, book_id):
 #     context = {}
 #     return render(request, 'main_site/signup_form.html', context)
 
-def auth(self):
+def auth(request):
+    a = request.user
+    user_session = Session_Cart.objects.filter(user_id=request.user).first()
+    if not user_session:
+        a = Session_Cart()
+        a.user = request.user
+        a.save()
+
+    request.session["shopping_cart"] = user_session
+    request.session.modified = True
+
     return HttpResponse("The auth/ automatic redirection is set in \
                         settings.py as LOGIN_REDIRECT_URL. This current message \
-                        is coming from main_site.views.auth() \
+                        is coming from main_site.views.auth(), \
+                        Cart loaded succefully, \
                         Succesfull login")
 
 def signup(request):
