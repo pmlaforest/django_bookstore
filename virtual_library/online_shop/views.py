@@ -9,6 +9,20 @@ from .models import Sale, Session_Cart
 
 from main_site.models import Book
 
+# Decorators for views
+
+def refresh_page_decorate(view_func):
+    """Oblige un rafraichissement de la page apres exécution de la view 
+    
+    :Args: view_func (function): La fonction view a décorer
+    
+    :Returns: function: La fonction view décoré
+    """
+    def refresh_page(request, *args, **kwargs):
+        view_func(request, *args, **kwargs)
+        return redirect(request.META.get('HTTP_REFERER','main_site:index'))
+    return refresh_page
+
 # Create your views here.
 
 @login_required
@@ -23,7 +37,10 @@ def shop(request):
     else:
         return render(request, "online_shop/sale_form.html", {})
 
+
+
 @login_required
+@refresh_page_decorate
 def add_to_cart(request, book_id):    
     user_cart = request.session.get("shopping_cart")
     if not user_cart:
@@ -38,11 +55,17 @@ def add_to_cart(request, book_id):
     else:
         user_cart = Session_Cart.objects.get(id=request.session["shopping_cart"])
 
-
     user_cart.books.add(book_id)
-    return redirect(
-        request.META.get('HTTP_REFERER','main_site:index')
-    )
+
+
+
+@login_required
+@refresh_page_decorate
+def remove_from_cart(request, book_id):
+    user_cart = request.session.get("shopping_cart")
+    if user_cart:
+        to_delete = user_cart.books.filter(id=book_id).first()
+        to_delete.delete()
 
 
 @login_required
@@ -65,11 +88,8 @@ def view_cart(request):
     shopping_cart_books = []
     for entry in shopping_cart:
         shopping_cart_books.append({ "id":entry.id, "title":entry.title })
+   
     context = { "books": shopping_cart_books, }
-
-
-        #oi_serialized = json.dumps(oi_dict)
-
     return render(request, "online_shop/shopping_cart.html", context)
 
 
