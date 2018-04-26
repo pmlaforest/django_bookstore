@@ -21,7 +21,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('shop/', include('online_shop.urls')),
     re_path(r'', include('main_site.urls')),
-    path('cart/', include('cart.urls')),
+    # path('cart/', include('cart.urls')),
 ]
 
 #Add Django site authentication urls (for login, logout, password management)

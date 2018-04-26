@@ -11,8 +11,8 @@
         <li class="navbar-right"><a href="{% url 'main_site:signin' %}"><i class="fas fa-user"></i> Sign in</a></li>
 
         {% else %}
-        <li class="navbar-right"><a href="{% url 'main_site:logout' %}"><i class="fas fa-sign-out-alt"></i> Sign out</a></li>
-        <li class="navbar-right"><a href="{% url 'main_site:index' %}"><i class="fas fa-shopping-cart"></i> Cart</a></li>
+        <li class="navbar-right"><a href="{% url 'main_site:logout' %}">Sign out</a></li>
+        <li class="navbar-right"><a href="{% url 'online_shop:view_cart' %}">Cart</a></li>
 
         {% endif %}
     </ul>

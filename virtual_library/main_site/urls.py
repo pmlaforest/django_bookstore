@@ -10,8 +10,6 @@ from . import views
 app_name = 'main_site'
 urlpatterns = [
     path('search/', views.search, name='search'),
-    # path('signin/', views.signin, name='signin'),
-    # path('signup/', views.signup, name='signup'),
     path('signin/', auth_views.login, {'template_name': 'main_site/signin_form.html'}, name='signin'),
     path('signin/auth/', views.auth, name='auth'),
     path('signup/', views.signup, name='signup'),
