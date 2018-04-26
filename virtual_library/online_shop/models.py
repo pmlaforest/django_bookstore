@@ -41,20 +41,8 @@ class History(models.Model):
 
 class Session_Cart(models.Model):
 
-    user = models.ForeignKey(User, 
-                                null = True, blank = True, 
-                                on_delete=models.CASCADE)
-
-    #user_name = models.CharField(max_length=30, null = True)
+    user = models.ForeignKey(User, null = True, blank = True, 
+                             on_delete=models.CASCADE)
 
     books = models.ManyToManyField(Book, blank=True)
 
-    def save_cart(self, shopping_cart):
-        self.shopping_cart = shopping_cart
-
-    def get_cart(self):
-        try:
-            return self.shopping_cart
-        except AttributeError as ex:
-            self.shopping_cart = []
-            return self.shopping_cart

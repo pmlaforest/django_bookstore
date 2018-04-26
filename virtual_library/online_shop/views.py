@@ -25,17 +25,21 @@ def shop(request):
 
 @login_required
 def add_to_cart(request, book_id):    
-    user_cart = Session_Cart.objects.get(user=request.user)
+    user_cart = request.session.get("shopping_cart")
     if not user_cart:
-        a = Session_Cart()
-        a.user = request.user
-        a.save()
-        user_cart = a
+        user_cart = Session_Cart.objects.filter(user=request.user).first()
+        if not user_cart:
+            a = Session_Cart()
+            a.user = request.user
+            a.save()
+            user_cart = a
+        request.session["shopping_cart"] = user_cart.id
+        request.session.modified = True
+    else:
+        user_cart = Session_Cart.objects.get(id=request.session["shopping_cart"])
 
-    request.session["shopping_cart"] = user_cart
-    request.session.modified = True
 
-    request.session["shopping_cart"].add(book_id)
+    user_cart.books.add(book_id)
     return redirect(
         request.META.get('HTTP_REFERER','main_site:index')
     )
@@ -59,9 +63,8 @@ def view_cart(request):
     shopping_cart = user_cart.books.all()
 
     shopping_cart_books = []
-    for book_id in shopping_cart:
-        book = Book.objects.get(id=book_id)
-        shopping_cart_books.append({ "id":book.id, "title":book.title })
+    for entry in shopping_cart:
+        shopping_cart_books.append({ "id":entry.id, "title":entry.title })
     context = { "books": shopping_cart_books, }
 
 
