@@ -53,6 +53,55 @@ class Book_Author(models.Model):
 class Book_Genre(models.Model):
     book = models.ForeignKey(Book, on_delete=models.CASCADE)
     genre =  models.ForeignKey(Genre, on_delete=models.CASCADE)
+#Proxy ***********************************************************************
+
+
+class Proxy(Subject):
+
+
+    def __init__(self, book):
+        self.book = book
+
+    def request(self):
+        # ...
+        self.book.request()
+        # ...
+
+
+class Book(Subject):
+
+    title = models.CharField(max_length=200)
+    pub_date = models.DateTimeField('date published', null=True,  blank=True)
+    synopsis = models.TextField(max_length=2500,blank=True)
+    path_to_img = models.CharField(max_length=260)
+
+
+    # need to add the price of the book here !
+    buy_price = models.FloatField(blank=True, null=True)
+    rent_price = models.FloatField(blank=True, null=True)
+
+    authors = models.ManyToManyField(Author, through="Book_Author")
+    genres  = models.ManyToManyField(Genre, through="Book_Genre")
+
+    def __str__(self):
+        return self.title
+
+
+    def getSynopsis(self):
+        return self.synopsis
+
+    def setBuyPrice(self, price):
+        self.buy_price=price
+        return
+
+def main():
+    book = Book()
+    proxy = Proxy(book)
+    proxy.getSynopsis()
+
+
+if __name__ == "__main__":
+    main()
 
 #Singleton *******************************************************************
 class SingletonModel(models.Model):
