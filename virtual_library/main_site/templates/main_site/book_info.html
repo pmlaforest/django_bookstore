@@ -4,6 +4,10 @@
 
 {% include "book.html" with book_desc=book_to_display authors=authors_of_book genres=genres_of_book %}    
 
-<a href="{% url 'main_site:index' %}">New search</a>
+<button class="btn" type="button">
+    <a href="{% url 'online_shop:add_to_cart' book_to_display.id  %}">
+        <i class="fas fa-cart-plus"></i>
+    </a>
+</button> 
 
 {% endblock %}
