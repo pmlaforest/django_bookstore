@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.cache import cache
 
 class Author(models.Model):
     name = models.CharField(max_length=200)
@@ -52,3 +53,37 @@ class Book_Author(models.Model):
 class Book_Genre(models.Model):
     book = models.ForeignKey(Book, on_delete=models.CASCADE)
     genre =  models.ForeignKey(Genre, on_delete=models.CASCADE)
+
+#Singleton *******************************************************************
+class SingletonModel(models.Model):
+
+    class Meta:
+        abstract = True
+
+    def delete(self, *args, **kwargs):
+        pass
+
+    def set_cache(self):
+        cache.set(self.__class__.__name__, self)
+
+    def save(self, *args, **kwargs):
+        self.pk = 1
+        super(SingletonModel, self).save(*args, **kwargs)
+
+        self.set_cache()
+
+    @classmethod
+    def load(cls):
+        if cache.get(cls.__name__) is None:
+            obj, created = cls.objects.get_or_create(pk=1)
+            if not created:
+                obj.set_cache()
+        return cache.get(cls.__name__)
+
+
+class SiteSettings(SingletonModel):
+    support = models.EmailField(default='support@example.com')
+    sales_department = models.EmailField(blank=True)
+    library_account_sid = models.CharField(max_length=255, default='ACbcad883c9c3e9d9913a715557dddff99')
+    library_auth_token = models.CharField(max_length=255, default='abd4d45dd57dd79b86dd51df2e2a6cd5')
+    library_phone_number = models.CharField(max_length=255, default='+15006660005')

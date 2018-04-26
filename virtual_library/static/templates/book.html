@@ -3,38 +3,27 @@
 
 <div class='book'>
     {% load static %}
-    {% if book_desc.path_to_img %} 
-        <img id='books-img' src="{% static book_desc.path_to_img %}"> 
-    {% endif %}
-    {% if book_desc.title %} 
-        <p id='books-title'> title: {{ book_desc.title }} </p> 
-    {% endif %}
-    {% if book_desc.pub_date %} 
-        <p id='books-pubdate'> publishing date: {{ book_desc.pub_date }} </p> 
-    {% endif %}
-    {% if book_desc.synopsis %} 
-        <p id='books-synopsis'> synopsis: {{ book_desc.synopsis }} </p> 
-    {% endif %}
-    {% if book_desc.buy_price %} 
-        <p id='books-buyprice'> price: {{ book_desc.buy_price }} </p> 
-    {% endif %}
-    {% if book_desc.rent_price %} 
-        <p id='books-rentprice'> price: {{ book_desc.rent_price }} </p> 
-    {% endif %}
-    {% if authors %} 
-        <p id='books-authors'> 
-            authors: {% for a in authors %} 
-                {{ a.name }} 
-            {% endfor %}
-        </p> 
-    {% endif %}
-    {% if genres %} 
-        <p id='books-genres'> 
-            genres: {% for g in genres %} 
-                {{ g.name }} 
-            {% endfor %}
-        </p> 
-    {% endif %}
+    {% if book_desc.path_to_img %} <img id='books-img' src="{% static book_desc.path_to_img %}"> {% endif %}
+    {% if book_desc.title %} <p id='books-title'><a href = "{% url 'main_site:get_info' book_desc.id  %}">title: {{ book_desc.title }} </a> </p> {% endif %}
+    {% if book_desc.pub_date %} <p id='books-pubdate'> publishing date: {{ book_desc.pub_date }} </p> {% endif %}
+    <!-- {% if book_desc.synopsis %} <p id='books-synopsis'> synopsis: {{ book_desc.synopsis }} </p> {% endif %} -->
+    {% if book_desc.buy_price %} <p id='books-buyprice'> price: {{ book_desc.buy_price }} </p> {% endif %}
+    {% if book_desc.rent_price %} <p id='books-rentprice'> price: {{ book_desc.rent_price }} </p> {% endif %}
+    {% if authors %} <p id='books-authors'> authors: {% for a in authors %} {{ a.name }} {% endfor %}</p> {% endif %}
+    {% if genres %} <p id='books-genres'> genres: {% for g in genres %} {{ g.name }} {% endfor %}</p> {% endif %}
 </div>
 
 {% endblock %}
+
+<!-- {% block desc1 %}
+
+<div class='desc1'>
+    {% load static %}
+    {% if book_desc.path_to_img %} <img id='books-img' src="{% static book_desc.path_to_img %}"> {% endif %}
+    {% if book_desc.title %} <p id='books-title'> title: {{ book_desc.title }} </p> {% endif %}
+    {% if book_desc.buy_price %} <p id='books-buyprice'> price: {{ book_desc.buy_price }} </p> {% endif %}
+    {% if book_desc.rent_price %} <p id='books-rentprice'> price: {{ book_desc.rent_price }} </p> {% endif %}
+
+</div>
+
+{% endblock %} -->
