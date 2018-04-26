@@ -55,7 +55,7 @@ class Book_Genre(models.Model):
     genre =  models.ForeignKey(Genre, on_delete=models.CASCADE)
 #Proxy ***********************************************************************
 
-
+'''
 class Proxy(Subject):
 
 
@@ -102,7 +102,7 @@ def main():
 
 if __name__ == "__main__":
     main()
-
+'''
 #Singleton *******************************************************************
 class SingletonModel(models.Model):
 
