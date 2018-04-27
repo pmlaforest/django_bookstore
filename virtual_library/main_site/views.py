@@ -7,6 +7,7 @@ from django.contrib.auth import login, authenticate
 
 
 from main_site.models import Book, Author, Book_Author, Genre
+from main_site.forms import SignUpForm
 from online_shop.models import Session_Cart
 
 def index(request):
