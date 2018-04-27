@@ -76,10 +76,7 @@ def search(request, keyword:str=None):
             'keyword': keyword
             }
 
-        template = loader.get_template('main_site/search_result.html')
-        response = template.render(context)
-        # IMPORTANT : need to use HttpResponseRedirect instead !!!
-        return HttpResponse(response)
+        return render(request, 'main_site/search_result.html', context)
 
 def get_info(request, book_id):
 
