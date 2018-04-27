@@ -12,10 +12,10 @@ from main_site.models import Book
 # Decorators for views
 
 def refresh_page_decorate(view_func):
-    """Oblige un rafraichissement de la page apres exécution de la view 
-    
+    """Oblige un rafraichissement de la page apres exécution de la view
+
     :Args: view_func (function): La fonction view a décorer
-    
+
     :Returns: function: La fonction view décoré
     """
     def refresh_page(request, *args, **kwargs):
@@ -41,7 +41,7 @@ def shop(request):
 
 @login_required
 @refresh_page_decorate
-def add_to_cart(request, book_id):    
+def add_to_cart(request, book_id):
     user_cart = request.session.get("shopping_cart")
     if not user_cart:
         user_cart = Session_Cart.objects.filter(user=request.user).first()
@@ -88,9 +88,6 @@ def view_cart(request):
     shopping_cart_books = []
     for entry in shopping_cart:
         shopping_cart_books.append({ "id":entry.id, "title":entry.title })
-   
+
     context = { "books": shopping_cart_books, }
     return render(request, "online_shop/shopping_cart.html", context)
-
-
-
