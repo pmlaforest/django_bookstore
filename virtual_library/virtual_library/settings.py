@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'main_site.apps.MainSiteConfig',
     'online_shop.apps.OnlineShopConfig',
+    
 ]
 
 MIDDLEWARE = [
@@ -128,3 +129,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static/'),]
+
+#paypal
+# PAYPAL_RECEIVER_EMAIL = 'sonalis.packtpub-test1'
+# Paypal_TEST = TRUE

@@ -11,19 +11,21 @@
 
     {% else %}
 
-        
+
         <table id="shopping_cart">
             <tr>
                 <th>Title</th>
-                <th>Author</th>
+                
             </tr>
 
             {% for i in books %}
             <tr>
                 <td><a href = "{% url 'main_site:get_info' i.id  %}">{{ i.title }}</a></td>
+
+
                 <!-- <td>
-                    {% for j in i.authors %} 
-                        {{ j }} 
+                    {% for j in i.authors %}
+                        {{ j }}
                     {% endfor %}
                 </td> -->
             </tr>

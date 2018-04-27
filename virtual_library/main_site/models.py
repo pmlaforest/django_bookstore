@@ -54,21 +54,33 @@ class Book_Genre(models.Model):
     book = models.ForeignKey(Book, on_delete=models.CASCADE)
     genre =  models.ForeignKey(Genre, on_delete=models.CASCADE)
 #Proxy ***********************************************************************
-
 '''
-class Proxy(Subject):
+import abc
+
+
+class BookI(metaclass=abc.ABCMeta):
+    """
+    Define the common interface for RealSubject and Proxy so that a
+    Proxy can be used anywhere a RealSubject is expected.
+    """
+
+    @abc.abstractmethod
+    def getTitle(self):
+        pass
+
+class Proxy(BookI):
 
 
     def __init__(self, book):
         self.book = book
 
-    def request(self):
+    def getTitle(self):
         # ...
         self.book.request()
         # ...
 
 
-class Book(Subject):
+class Book(BookI):
 
     title = models.CharField(max_length=200)
     pub_date = models.DateTimeField('date published', null=True,  blank=True)
@@ -83,12 +95,9 @@ class Book(Subject):
     authors = models.ManyToManyField(Author, through="Book_Author")
     genres  = models.ManyToManyField(Genre, through="Book_Genre")
 
-    def __str__(self):
+
+    def getTitle(self):
         return self.title
-
-
-    def getSynopsis(self):
-        return self.synopsis
 
     def setBuyPrice(self, price):
         self.buy_price=price

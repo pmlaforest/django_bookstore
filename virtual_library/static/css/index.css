@@ -2,7 +2,7 @@
 Array
 */
 
-#discount-books 
+#discount-books
 {
 	margin: auto;
     border-collapse: collapse;
@@ -12,7 +12,7 @@ Array
 #discount-books img
 {
     float: left;
-    margin: 5px 10px; 
+    margin: 5px 10px;
     height: 100px;
     width: 100px;
 }
@@ -22,18 +22,23 @@ Array
     margin: auto 5px;
 }
 
-#discount-books td, #discount-books  th 
+#discount-books td, #discount-books  th
 {
 	border: 1px solid #ddd;
 	text-align: left;
     padding: 8px;
 }
 
-#discount-books th 
+#discount-books th
 {
     padding-top: 12px;
 	padding-bottom: 12px;
 	font-size:1.2em;
     background-color: #333333;
     color: white;
+}
+
+#books-buyprice
+{
+	padding-left: 125px;
 }
